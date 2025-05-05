@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import WeatherForm from "./components/WeatherForm";
 import WeatherInfo from "./components/WeatherInfo";
+import HourlyForecast from "./components/HourlyForecast";
+import DailyForecast from "./components/DailyForecast";
 
 /*
     1. Người dùng nhập tên thành phố vào WeatherForm.
@@ -16,25 +18,36 @@ const App = () => {
     const [error, setError] = useState('') // State lưu lỗi
     const [forecastData, setForecastData] = useState() // State lưu dự báo
 
-
     const API_KEY = '53c949e3f49c8657a3d6437d52829239' // key của tài khoản cá nhân OpenWeather
 
     const fetchData = async (city) => {
         try {
+            // Fetch dữ liệu thời tiết hiện tại
             // 'units=metric' giúp lấy dữ liệu theo đơn vị độ C.
             const response = await fetch(
                 `https://api.openweathermap.org/data/2.5/weather?q=${ city }&appid=${ API_KEY }&units=metric`
             )
             setError('') // Xóa lỗi trước đó nếu có.
             setWeatherData(null) // Xóa dữ liệu cũ trước khi gửi yêu cầu mới.
+            setForecastData(null) // Xóa dữ liệu cũ trước khi gửi yêu cầu mới.
 
             // return true nếu API phản hồi mã 200
             // return false nếu API phản hồi mã 400, 404, 500
             if(!response.ok) // kiểm tra nếu false -> throw lỗi
                 throw new Error('City not found')
-
             const data = await response.json() // covert JSON -> Javascript
+
+            // Fetch dự báo 7 ngày tiếp theo
+            const forecast = await fetch(
+                `https://api.openweathermap.org/data/2.5/forecast?q=${ city }&appid=${ API_KEY }&units=metric`
+            )
+            if(!forecast.ok){
+                throw new Error('Forecast data not available')
+            }
+            const forecastData = await forecast.json()
+
             setWeatherData(data)  // Cập nhật state 'weatherData' với dữ liệu thời tiết mới.
+            setForecastData(forecastData)  // Cập nhật state 'forecastData' với dữ liệu thời tiết mới.
         } catch (err) { // 'err' là 1 object có thuộc tính message chứa mô tả lỗi
             setError(err.message)
         }
@@ -50,7 +63,14 @@ const App = () => {
                 {error}
             </p>} {/* Nếu có lỗi, hiển thị thông báo lỗi */}
             
-            {weatherData && <WeatherInfo weatherData={weatherData}/>} {/* Nếu có data thì render */}
+            {/* Nếu có data thì render */}
+            {weatherData && ( 
+                <>
+                    <WeatherInfo weatherData={weatherData}/>
+                    <HourlyForecast forecastData={forecastData}/>
+                    <DailyForecast forecastData={forecastData}/>
+                </>
+            )} 
         </div>
     );
 };
