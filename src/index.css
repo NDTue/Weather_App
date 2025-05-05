@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    height: 200vh; /* Đảm bảo phần nền phủ toàn bộ chiều cao màn hình */
+    height: 300vh; /* Đảm bảo phần nền phủ toàn bộ chiều cao màn hình */
     margin: 0; /* Loại bỏ khoảng trống mặc định của body */
     background: linear-gradient(to top right, #4A91FF, #47BFDF);
     font-family: "Overpass", sans-serif;
