@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: #f0f7ff;
+body {
+    height: 200vh; /* Đảm bảo phần nền phủ toàn bộ chiều cao màn hình */
+    margin: 0; /* Loại bỏ khoảng trống mặc định của body */
+    background: linear-gradient(to top right, #4A91FF, #47BFDF);
+    font-family: "Overpass", sans-serif;
 }
