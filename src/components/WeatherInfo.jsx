@@ -50,7 +50,7 @@ const WeatherInfo = ({ weatherData }) => {
                     </p>
 
                     {/* Weather Description */}
-                    <p className='text-xl capitalize font-semibold pb-5 tracking-wider'>
+                    <p className='text-2xl capitalize font-semibold pb-5 tracking-wider'>
                         {weatherData.weather[0].description}
                     </p>
 
