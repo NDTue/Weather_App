@@ -12,8 +12,10 @@ import WeatherInfo from "./components/WeatherInfo";
 */
 
 const App = () => {
-    const [weatherData, setWeatherData] = useState(null) // State lưu data
+    const [weatherData, setWeatherData] = useState() // State lưu data
     const [error, setError] = useState('') // State lưu lỗi
+    const [forecastData, setForecastData] = useState() // State lưu dự báo
+
 
     const API_KEY = '53c949e3f49c8657a3d6437d52829239' // key của tài khoản cá nhân OpenWeather
 
@@ -39,11 +41,15 @@ const App = () => {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center mt-10">
-            <h1 className="text-5xl font-bold text-red-400">Weather App</h1>
+        <div className="flex flex-col justify-center items-center mt-12">
+            <h1 className="text-5xl font-bold [text-shadow:_-5px_5px_5px_rgba(131,131,131,0.7)] text-white">Weather App</h1>
 
             <WeatherForm onSearch={fetchData}/> {/* Submit tên thành phố sẽ fetchData */}
-            {error && <p>{error}</p>} {/* Nếu có lỗi, hiển thị thông báo lỗi */}
+            
+            {error && <p className="mt-10 text-3xl text-white [text-shadow:_-3px_3px_3px_rgba(131,131,131,0.57)] font-semibold">
+                {error}
+            </p>} {/* Nếu có lỗi, hiển thị thông báo lỗi */}
+            
             {weatherData && <WeatherInfo weatherData={weatherData}/>} {/* Nếu có data thì render */}
         </div>
     );
