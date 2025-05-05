@@ -55,7 +55,10 @@ const App = () => {
 
     return (
         <div className="flex flex-col justify-center items-center mt-12">
-            <h1 className="text-5xl font-bold [text-shadow:_-5px_5px_5px_rgba(131,131,131,0.7)] text-white">Weather App</h1>
+            <h1 className="text-5xl  font-bold  text-white
+            bg-gradient-to-tr from-fuchsia-300 to-rose-600 bg-clip-text text-transparent">
+                Weather App
+            </h1>
 
             <WeatherForm onSearch={fetchData}/> {/* Submit tên thành phố sẽ fetchData */}
             
