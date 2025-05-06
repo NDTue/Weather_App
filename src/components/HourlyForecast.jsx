@@ -5,7 +5,7 @@ const HourlyForecast = ({ forecastData }) => {
     // Hàm format thời gian từ timestamp sang định dạng giờ:phút
     const formatTime = (timestamp) => {
         // Chuyển đổi timestamp thành đối tượng Date
-        // Nhân với 1000 để chuyển từ giây sang mili giây
+        // Nhân với 1000 để chuyển từ s -> ms
         const date = new Date(timestamp * 1000);
         
         // Sử dụng phương thức toLocaleTimeString để định dạng thời gian theo tiếng Việt
@@ -31,14 +31,15 @@ const HourlyForecast = ({ forecastData }) => {
                 {/* ?. (optional chaining) đảm bảo không lỗi nếu hourlyData là null/undefined */}
                 {hourlyData?.map((hour, index) => (
                     <div key={index} className='bg-white/30 p-3 rounded-xl text-center text-white 
-                        [text-shadow:_-2px_2px_2px_rgba(131,131,131,0.57)]'>
+                        [text-shadow:_-2px_2px_2px_rgba(131,131,131,0.57)]
+                        bg-gradient-to-b from-sky-400 to-sky-200'>
 
                         {/* Time */}
                         <p className='text-md font-semibold'>{formatTime(hour.dt)}</p>
                         
                         {/* Icon */}
                         <img className='mx-auto size-16'
-                            src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}.png`}
+                            src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
                             alt={hour.weather[0].description}/>
 
                         {/* Temperature */}

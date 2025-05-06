@@ -45,8 +45,8 @@ const DailyForecast = ({ forecastData }) => {
             }
         })
 
-        // Chuyển đối tượng thành mảng và giới hạn 7 ngày
-        return Object.values(dailyMap).slice(0, 7)
+        // Chuyển đối tượng thành mảng và lấy 5 ngày tiếp theo, bỏ qua ngày hiện tại
+        return Object.values(dailyMap).slice(1, 6)
     }, [forecastData])
 
     return (
@@ -59,7 +59,8 @@ const DailyForecast = ({ forecastData }) => {
                 {/* ?. (optional chaining) đảm bảo không lỗi nếu dailyData là null/undefined */}
                 {dailyData?.map((day, index) => (
                     <div className='bg-white/30 p-4 rounded-xl flex justify-between items-center
-                        text-white [text-shadow:_-2px_2px_2px_rgba(131,131,131,0.57)]'
+                        text-white [text-shadow:_-2px_2px_2px_rgba(131,131,131,0.57)]
+                        bg-gradient-to-r from-cyan-400 to-blue-500'
                         key={index}>
 
                         {/* Hiển thị ngày */}
@@ -68,7 +69,7 @@ const DailyForecast = ({ forecastData }) => {
                         <div className='flex gap-4 items-center'>
                             {/* Icon */}
                             <img className='w-16 h-16'
-                                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`}
+                                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                                 alt={day.weather[0].description}
                             />
 
