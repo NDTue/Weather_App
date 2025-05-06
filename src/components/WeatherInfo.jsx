@@ -8,6 +8,9 @@ import React from 'react';
         .main.temp
         .weather[0].description
         .weather[0].icon
+        .main.humidity
+        .wind.speed
+        .dt (timestamp)
 */
 const WeatherInfo = ({ weatherData }) => {
     // 'weatherData' là prop chứa data của thời tiết
@@ -40,7 +43,8 @@ const WeatherInfo = ({ weatherData }) => {
             </div>
 
             {/* Weather Detail Info */}
-            <div className='drop-shadow-2xl mt-5 bg-white/30 rounded-3xl text-center'>
+            <div className='drop-shadow-2xl mt-5 bg-white/30 rounded-3xl text-center
+            bg-gradient-to-r from-sky-400 to-blue-500'>
                 <div className='text-white rounded-3xl py-5 [text-shadow:_-3px_3px_3px_rgba(131,131,131,0.57)]'>
                     <h1 className='text-2xl pb-5'>Today, {formatGMT7(weatherData.dt)}</h1>
 
