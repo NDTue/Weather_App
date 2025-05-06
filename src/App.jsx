@@ -37,7 +37,7 @@ const App = () => {
                 throw new Error('City not found')
             const data = await response.json() // covert JSON -> Javascript
 
-            // Fetch dự báo 7 ngày tiếp theo
+            // Fetch dự báo 5 ngày tiếp theo
             const forecast = await fetch(
                 `https://api.openweathermap.org/data/2.5/forecast?q=${ city }&appid=${ API_KEY }&units=metric`
             )
@@ -55,8 +55,8 @@ const App = () => {
 
     return (
         <div className="flex flex-col justify-center items-center mt-12">
-            <h1 className="text-5xl  font-bold  text-white
-            bg-gradient-to-tr from-fuchsia-300 to-rose-600 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold
+            bg-gradient-to-r from-violet-200 to-pink-200 bg-clip-text text-transparent">
                 Weather App
             </h1>
 
